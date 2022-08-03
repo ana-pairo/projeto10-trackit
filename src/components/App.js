@@ -5,7 +5,8 @@ export default function App() {
   return (
     <>
       <GlobalStyle />
-      <Primeira>oie primeira pag</Primeira>
+      <div>oie primeira pag</div>
+      <Primeira>oie primeira</Primeira>
     </>
   );
 }
