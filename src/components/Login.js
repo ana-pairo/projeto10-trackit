@@ -21,6 +21,10 @@ export default function Login() {
   function handleLogin(e) {
     e.preventDefault();
     setIsDisable(true);
+
+    // useEffect(() => {
+    //   getMovies().then((res) => setMovies(res.data));
+    // }, []);
   }
 
   return (
