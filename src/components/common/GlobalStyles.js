@@ -132,8 +132,11 @@ table {
 }
 
 body {
-    font-family: 'Lexend Deca', sans-serif;
+  font-family: 'Lexend Deca', sans-serif;
+  box-sizing: border-box;
 }
+
+
 
 `;
 
