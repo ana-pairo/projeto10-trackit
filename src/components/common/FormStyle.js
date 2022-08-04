@@ -16,8 +16,9 @@ const FormStyle = styled.form`
     font-weight: 400;
     font-size: 20px;
     line-height: 25px;
-    color: rgb(205, 205, 205, 0.8);
+    color: #afafaf;
     padding-left: 11px;
+    outline: none;
   }
 
   input::placeholder {

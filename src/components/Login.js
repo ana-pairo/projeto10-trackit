@@ -1,52 +1,70 @@
 import { useContext, useState } from "react";
-import logo from "../assets/img/Logo.png";
 import styled from "styled-components";
-// import { useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
+import logo from "../assets/img/Logo.png";
 import UserContext from "../contexts/UserContext";
 import TokenContext from "../contexts/TokenContext";
 import FormStyle from "./common/FormStyle";
 import Button from "./common/Button";
 import StyledLink from "./common/StyledLink";
+import { postLogin } from "../services/TrackIt";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const [isDisable, setIsDisable] = useState(false);
-  // const navigate = useNavigate();
+  const [inputData, setInputData] = useState({ email: "", password: "" });
 
-  const { setUser } = useContext(UserContext);
+  const { setUser, user } = useContext(UserContext);
   const { setToken } = useContext(TokenContext);
 
   function handleLogin(e) {
+    setInputData({ ...inputData, [e.target.name]: e.target.value });
+  }
+
+  function sendLogin(e) {
     e.preventDefault();
     setIsDisable(true);
 
-    // useEffect(() => {
-    //   getMovies().then((res) => setMovies(res.data));
-    // }, []);
+    postLogin(inputData)
+      .then((res) => {
+        setUser({
+          ...user,
+          id: res.data.id,
+          name: res.data.name,
+        });
+        setToken(res.data.token);
+        navigate("/habitos");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Email ou senha inválidos, tente novamente ou cadastre-se");
+        setIsDisable(false);
+      });
   }
 
   return (
     <>
       <Wrapper>
         <img src={logo} />
-        <FormStyle onSubmit={handleLogin} isDisable={isDisable}>
+        <FormStyle isDisable={isDisable} onSubmit={sendLogin}>
           <input
             required
             type="email"
             placeholder="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
             disabled={isDisable}
+            onChange={handleLogin}
+            value={inputData.email}
           />
           <input
             required
             type="password"
             placeholder="senha"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name="password"
             disabled={isDisable}
+            onChange={handleLogin}
+            value={inputData.password}
           />
           <Button type="submit" isDisable={isDisable}>
             Entrar
@@ -65,7 +83,7 @@ const Wrapper = styled.div`
   align-items: center;
 
   img {
-    margin: 10vh 0;
+    margin: 10vh 0 5vh 0;
     width: 50%;
     height: auto;
   }

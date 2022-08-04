@@ -9,7 +9,12 @@ import Home from "./Home";
 
 export default function App() {
   const [token, setToken] = useState("");
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({
+    id: "",
+    name: "",
+    image:
+      "https://cdn-diejg.nitrocdn.com/WYiLGoqVkdsKZowLonTJzhjMhQDIKaHE/assets/static/optimized/rev-7a26935/wp-content/uploads/2019/02/cachorro-fofo.png",
+  });
 
   return (
     <>

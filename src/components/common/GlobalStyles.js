@@ -131,7 +131,7 @@ table {
   border-spacing: 0;
 }
 
-body {
+*{
   font-family: 'Lexend Deca', sans-serif;
   box-sizing: border-box;
 }
