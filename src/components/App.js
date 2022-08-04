@@ -5,15 +5,16 @@ import TokenContext from "../contexts/TokenContext";
 import { useState } from "react";
 import Login from "./Login";
 import Register from "./Register";
-import Home from "./Home";
+import TrackRecord from "./TrackRecord";
+import Habits from "./Habits";
+import Today from "./Today";
 
 export default function App() {
   const [token, setToken] = useState("");
   const [user, setUser] = useState({
     id: "",
     name: "",
-    image:
-      "https://cdn-diejg.nitrocdn.com/WYiLGoqVkdsKZowLonTJzhjMhQDIKaHE/assets/static/optimized/rev-7a26935/wp-content/uploads/2019/02/cachorro-fofo.png",
+    image: "",
   });
 
   return (
@@ -35,7 +36,23 @@ export default function App() {
               path="/habitos"
               element={
                 <TokenContext.Provider value={{ token }}>
-                  <Home />
+                  <Habits />
+                </TokenContext.Provider>
+              }
+            />
+            <Route
+              path="/historico"
+              element={
+                <TokenContext.Provider value={{ token }}>
+                  <TrackRecord />
+                </TokenContext.Provider>
+              }
+            />
+            <Route
+              path="/hoje"
+              element={
+                <TokenContext.Provider value={{ token }}>
+                  <Today />
                 </TokenContext.Provider>
               }
             />

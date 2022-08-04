@@ -71,7 +71,7 @@ function uncheckHabit({ token, habitId }) {
   return promise;
 }
 
-function getHabitHistory(token) {
+function getTrackRecord(token) {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -90,5 +90,5 @@ export {
   getCurrentHabit,
   checkHabit,
   uncheckHabit,
-  getHabitHistory,
+  getTrackRecord,
 };

@@ -10,6 +10,7 @@ const StyledLink = styled(Link)`
   text-align: center;
   text-decoration-line: underline;
   color: #52b6ff;
+  outline: none;
 `;
 
 export default StyledLink;

@@ -32,6 +32,7 @@ export default function Login() {
           ...user,
           id: res.data.id,
           name: res.data.name,
+          image: res.data.image,
         });
         setToken(res.data.token);
         navigate("/habitos");
