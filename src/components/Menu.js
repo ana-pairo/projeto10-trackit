@@ -31,7 +31,6 @@ export default function Menu() {
 }
 
 const Fragmento = styled.div`
-  font-family: "Lexend Deca", sans-serif;
   display: flex;
   position: fixed;
   bottom: 0;
@@ -42,6 +41,11 @@ const Fragmento = styled.div`
   height: 10vh;
   width: 100%;
   padding: 0 20px;
+
+  * {
+    font-family: "Lexend Deca", sans-serif;
+    box-sizing: border-box;
+  }
 
   a {
     text-decoration: none;
@@ -59,6 +63,5 @@ const Fragmento = styled.div`
     height: 111px;
     width: 91px;
     margin-bottom: 20px;
-    font-family: "Lexend Deca", sans-serif;
   }
 `;

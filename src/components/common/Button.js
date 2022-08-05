@@ -1,20 +1,9 @@
 import styled from "styled-components";
 import { ThreeDots } from "react-loader-spinner";
 
-export default function Button({
-  children,
-  width,
-  height,
-  isDisable,
-  ...otherProps
-}) {
+export default function Button({ children, type, isDisable, ...otherProps }) {
   return (
-    <ButtonWrapper
-      isDisable={isDisable}
-      width={width}
-      height={height}
-      {...otherProps}
-    >
+    <ButtonWrapper isDisable={isDisable} type={type} {...otherProps}>
       {isDisable ? (
         <ThreeDots
           height="20"
@@ -40,7 +29,7 @@ const ButtonWrapper = styled.button`
   border-radius: 5px;
   font-family: "Lexend Deca", sans-serif;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 21px;
   line-height: 26px;
   text-align: center;
   color: #ffffff;
@@ -48,4 +37,11 @@ const ButtonWrapper = styled.button`
   justify-content: center;
   align-items: center;
   outline: none;
+  box-sizing: border-box;
+
+  ${(props) => {
+    if (props.type === "add") {
+      return "width: 40px; height: 35px; font-size: 30px; display: flex; padding: 0; padding-bottom: 5px ";
+    }
+  }}
 `;
