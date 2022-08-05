@@ -1,91 +1,132 @@
 import { useState } from "react";
-
 import styled from "styled-components";
-import FormStyle from "./common/FormStyle";
 
-export default function HabitForm() {
+import Button from "./common/Button";
+
+export default function HabitForm({ open, setOpenHabitForm }) {
   const [isDisable, setIsDisable] = useState(false);
   const days = ["D", "S", "T", "Q", "Q", "S", "S"];
   const [selectedDays, setSelectedDays] = useState([]);
-
   console.log(selectedDays);
 
-  function handleDays(e) {
-    let idIndex;
-    let newSelected = [...selectedDays];
-    let id = e.target.name;
-
-    if (!selectedDays.includes(id)) {
-      newSelected.push(id);
+  function handleDay(id) {
+    let indexId;
+    let newArray = [...selectedDays];
+    if (selectedDays.includes(id)) {
+      indexId = newArray.indexOf(id);
+      newArray.splice(indexId, 1);
     } else {
-      idIndex = newSelected.indexOf(id);
-      newSelected.splice(idIndex, 1);
+      newArray.push(id);
     }
-    setSelectedDays(newSelected);
-
-    // if (selectedDays.includes(id)) {
-    //   let idIndex = newSelected.indexOf(id);
-    //   newSelected.splice(idIndex, 1);
-    //   setSelectedDays = [...newSelected];
-    //   console.log(selectedDays);
-    // } else {
-    //   newSelected.push(id);
-    //   setSelectedDays = [...newSelected];
-    //   console.log(selectedDays);
-    // }
+    setSelectedDays(newArray);
   }
 
   return (
-    <WrapperForm>
-      <FormStyle isDisable={isDisable} size="small">
-        <input required type="name" placeholder="nome do hábito" name="email" />
-      </FormStyle>
-      <div>
+    <WrapperForm open={open}>
+      <input
+        disabled={isDisable}
+        required
+        type="name"
+        placeholder="nome do hábito"
+        name="email"
+      />
+      <DaysOption>
         {days.map((day, index) => {
           if (selectedDays.includes(index)) {
             return (
-              <button
-                style={{ backgroundColor: "red" }}
+              <Button
                 key={index}
-                type="button"
-                name={index}
-                onClick={handleDays}
+                isDisable={isDisable}
+                color="#cfcfcf"
+                letter="#ffffff"
+                type="days"
+                onClick={() => handleDay(index)}
               >
                 {day}
-              </button>
+              </Button>
             );
           } else {
             return (
-              <button
+              <Button
                 key={index}
-                type="button"
-                name={index}
-                onClick={handleDays}
+                isDisable={isDisable}
+                color="#ffffff"
+                letter="#cfcfcf"
+                type="days"
+                onClick={() => handleDay(index)}
               >
                 {day}
-              </button>
+              </Button>
             );
           }
         })}
-      </div>
+      </DaysOption>
+      <Buttons>
+        <Button
+          disabled={isDisable}
+          type="cancel"
+          onClick={() => {
+            setOpenHabitForm(false);
+          }}
+        >
+          Cancelar
+        </Button>
+        <Button isDisable={isDisable} type="save">
+          Salvar
+        </Button>
+      </Buttons>
     </WrapperForm>
   );
 }
 
 const WrapperForm = styled.div`
+  display: ${(props) => (props.open ? "initial" : "none")};
   width: 90%;
-  height: 180px;
+  min-height: 170px;
   margin-top: 20px;
   background: #ffffff;
   border-radius: 5px;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 5%;
 
-  div {
-    width: 90%;
-    height: 30px;
-    margin: 8px auto;
-    display: flex;
+  input {
+    height: 45px;
+    width: 100%;
+    margin: 18px 0 8px 0;
+    text-decoration: none;
+    background-color: ${(props) => (props.isDisable ? "#f2f2f2" : "#ffffff")};
+    border: 1px solid #d5d5d5;
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 25px;
+    color: #dbdbdb;
+    padding-left: 11px;
+    outline: none;
   }
 
+  input::placeholder {
+    color: rgb(205, 205, 205, 0.8);
+  }
+`;
+
+const DaysOption = styled.div`
+  height: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  align-items: center;
+  margin-top: 20px;
+`;
+
+/* 
   button {
     display: flex;
     align-items: center;
@@ -105,5 +146,4 @@ const WrapperForm = styled.div`
     line-height: 25px;
     color: rgb(205, 205, 205, 0.8);
     outline: none;
-  }
-`;
+  } */

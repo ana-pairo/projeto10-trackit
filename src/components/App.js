@@ -15,6 +15,7 @@ export default function App() {
     id: "",
     name: "",
     image: "",
+    userHabits: "",
   });
 
   return (

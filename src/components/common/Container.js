@@ -11,6 +11,7 @@ const ContainerWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
 
   * {
     font-family: "Lexend Deca", sans-serif;
