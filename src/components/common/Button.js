@@ -12,7 +12,7 @@ export default function Button({
   return (
     <ButtonWrapper
       isDisable={isDisable}
-      esseaqui={color}
+      color={color}
       letter={letter}
       type={type}
       {...otherProps}
@@ -75,7 +75,7 @@ ${(props) => {
 
 ${(props) => {
     if (props.type === "days") {
-      return `background-color: ${props.esseaqui} ; color: ${props.letter};padding: 0;padding-bottom: 3px; line-height: 25px;font-size: 20px;height: 30px; width: 30px;  border: 1px solid #d5d5d5; margin-right: 4px;`;
+      return `background-color: ${props.color} ; color: ${props.letter};padding: 0;padding-bottom: 3px; line-height: 25px;font-size: 20px;height: 30px; width: 30px;  border: 1px solid #d5d5d5; margin-right: 4px;`;
     }
   }}
 `;

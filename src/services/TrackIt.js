@@ -12,8 +12,13 @@ function postRegistration(body) {
   return promise;
 }
 
-function postHabit() {
-  const promise = axios.post(`${BASE_URL}/habits`);
+function postHabit({ token, body }) {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const promise = axios.post(`${BASE_URL}/habits`, body, config);
   return promise;
 }
 

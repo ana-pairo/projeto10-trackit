@@ -41,7 +41,6 @@ export default function Register() {
           alert("Dados inválidos, por favor, tente novamente");
           setIsDisable(false);
         }
-        console.log(err);
       });
   }
 

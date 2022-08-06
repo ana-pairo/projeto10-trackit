@@ -1,13 +1,22 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styled from "styled-components";
 
 import Button from "./common/Button";
+import TokenContext from "../contexts/TokenContext";
+import { postHabit } from "../services/TrackIt";
 
-export default function HabitForm({ open, setOpenHabitForm }) {
+export default function HabitForm({
+  open,
+  setOpenHabitForm,
+  setReload,
+  reload,
+}) {
   const [isDisable, setIsDisable] = useState(false);
+  const [disableDays, setDisableDays] = useState(false);
+  const { token } = useContext(TokenContext);
   const days = ["D", "S", "T", "Q", "Q", "S", "S"];
   const [selectedDays, setSelectedDays] = useState([]);
-  console.log(selectedDays);
+  const [habitName, setHabitName] = useState("");
 
   function handleDay(id) {
     let indexId;
@@ -21,6 +30,32 @@ export default function HabitForm({ open, setOpenHabitForm }) {
     setSelectedDays(newArray);
   }
 
+  function handleHabit() {
+    if (selectedDays.length === 0) {
+      return alert("Por favor preencha todos os campos");
+    }
+    setIsDisable(true);
+    setDisableDays(true);
+    const body = {
+      name: habitName,
+      days: [...selectedDays],
+    };
+    postHabit({ token, body })
+      .then((res) => {
+        setHabitName("");
+        setSelectedDays([]);
+        setOpenHabitForm(false);
+        setIsDisable(false);
+        setDisableDays(false);
+        setReload(!reload);
+      })
+      .catch((err) => {
+        setIsDisable(false);
+        setDisableDays(false);
+        alert("Por favor preencha todos os campos");
+      });
+  }
+
   return (
     <WrapperForm open={open}>
       <input
@@ -28,7 +63,9 @@ export default function HabitForm({ open, setOpenHabitForm }) {
         required
         type="name"
         placeholder="nome do hábito"
-        name="email"
+        name="name"
+        value={habitName}
+        onChange={(e) => setHabitName(e.target.value)}
       />
       <DaysOption>
         {days.map((day, index) => {
@@ -36,7 +73,7 @@ export default function HabitForm({ open, setOpenHabitForm }) {
             return (
               <Button
                 key={index}
-                isDisable={isDisable}
+                disabled={disableDays}
                 color="#cfcfcf"
                 letter="#ffffff"
                 type="days"
@@ -49,7 +86,7 @@ export default function HabitForm({ open, setOpenHabitForm }) {
             return (
               <Button
                 key={index}
-                isDisable={isDisable}
+                disabled={disableDays}
                 color="#ffffff"
                 letter="#cfcfcf"
                 type="days"
@@ -71,7 +108,7 @@ export default function HabitForm({ open, setOpenHabitForm }) {
         >
           Cancelar
         </Button>
-        <Button isDisable={isDisable} type="save">
+        <Button isDisable={isDisable} type="save" onClick={handleHabit}>
           Salvar
         </Button>
       </Buttons>
@@ -101,7 +138,7 @@ const WrapperForm = styled.div`
     font-weight: 400;
     font-size: 20px;
     line-height: 25px;
-    color: #dbdbdb;
+    color: #666666;
     padding-left: 11px;
     outline: none;
   }

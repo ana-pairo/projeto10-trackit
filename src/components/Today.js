@@ -12,10 +12,8 @@ export default function Today() {
 
   useEffect(() => {
     if (!token) {
-      //   alert("Sessão expirada, por favor faça login novamente");
       navigate("/");
     } else {
-      console.log(token);
     }
   }, []);
 

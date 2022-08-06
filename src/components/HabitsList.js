@@ -1,30 +1,23 @@
 import styled from "styled-components";
-import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useContext } from "react";
 
 import TokenContext from "../contexts/TokenContext";
 import UserContext from "../contexts/UserContext";
 import { deleteHabit } from "../services/TrackIt";
 
 export default function HabitsList({ setReload, reload }) {
-  const navigate = useNavigate();
   const { token } = useContext(TokenContext);
   const { user } = useContext(UserContext);
   const weekDays = ["D", "S", "T", "Q", "Q", "S", "S"];
 
-  console.log(user);
-
-  function toDelete(habitId) {
-    console.log(habitId);
-
-    deleteHabit({ token, habitId })
-      .then((res) => {
-        console.log(res);
-        setReload(!reload);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  function toDelete(habitId, habitName) {
+    if (window.confirm(`Deseja deletar o hábito '${habitName}'?`)) {
+      deleteHabit({ token, habitId })
+        .then((res) => {
+          setReload(!reload);
+        })
+        .catch((err) => {});
+    }
   }
 
   return (
@@ -34,7 +27,7 @@ export default function HabitsList({ setReload, reload }) {
           <Title>{habit.name}</Title>
           <ion-icon
             name="trash-outline"
-            onClick={() => toDelete(habit.id)}
+            onClick={() => toDelete(habit.id, habit.name)}
           ></ion-icon>
           <Days>
             {weekDays.map((day, index) => {

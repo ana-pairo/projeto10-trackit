@@ -52,7 +52,12 @@ export default function Habits() {
             +
           </Button>
         </Title>
-        <HabitForm open={openHabitForm} setOpenHabitForm={setOpenHabitForm} />
+        <HabitForm
+          open={openHabitForm}
+          setOpenHabitForm={setOpenHabitForm}
+          setReload={setReload}
+          reload={reload}
+        />
         {user.userHabits ? (
           user.userHabits.length === 0 ? (
             <Message>

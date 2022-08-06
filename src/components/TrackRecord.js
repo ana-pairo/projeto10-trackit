@@ -11,10 +11,8 @@ export default function TrackRecord() {
   const { token } = useContext(TokenContext);
   useEffect(() => {
     if (!token) {
-      //   alert("Sessão expirada, por favor faça login novamente");
       navigate("/");
     } else {
-      console.log(token);
     }
   }, []);
   return (

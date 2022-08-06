@@ -20,6 +20,7 @@ export function Header() {
 const Wrapper = styled.div`
   display: flex;
   position: fixed;
+  z-index: 3;
   top: 0;
   left: 0;
   justify-content: space-between;
