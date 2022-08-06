@@ -42,7 +42,7 @@ function deleteHabit({ token, habitId }) {
   return promise;
 }
 
-function getCurrentHabit(token) {
+function getCurrentHabit({ token }) {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
