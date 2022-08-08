@@ -65,7 +65,7 @@ export default function TodayList({ reloadHabits, setReloadHabits }) {
 const TodayWrapper = styled.div`
   margin-top: 22px;
   width: 100%;
-  margin-bottom: 30px;
+  padding-bottom: 10vh;
 `;
 
 const Habit = styled.div`
