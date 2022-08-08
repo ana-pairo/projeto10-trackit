@@ -35,7 +35,7 @@ export default function Login() {
           image: res.data.image,
         });
         setToken(res.data.token);
-        navigate("/habitos");
+        navigate("/hoje");
       })
       .catch((err) => {
         alert("Email ou senha inválidos, tente novamente ou cadastre-se");

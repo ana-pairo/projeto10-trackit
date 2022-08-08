@@ -56,6 +56,7 @@ export default function HabitsList({ setReload, reload }) {
 
 const HabitsWrapper = styled.div`
   margin-top: 22px;
+  margin-bottom: 30px;
   width: 100%;
 `;
 
