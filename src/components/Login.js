@@ -38,7 +38,6 @@ export default function Login() {
         navigate("/habitos");
       })
       .catch((err) => {
-        console.log(err);
         alert("Email ou senha inválidos, tente novamente ou cadastre-se");
         setIsDisable(false);
       });

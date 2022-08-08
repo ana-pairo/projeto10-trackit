@@ -1,11 +1,32 @@
+import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import UserContext from "../contexts/UserContext";
 
 export default function Menu() {
   const navigate = useNavigate();
-  const percentage = 50;
+  const { user } = useContext(UserContext);
+  let percentage;
+
+  let counter = 0;
+  function setcounter() {
+    if (user.currentHabits) {
+      user.currentHabits.map((object) => {
+        if (object.done) {
+          counter++;
+        }
+      });
+    }
+  }
+
+  if (!user.currentHabits || user.currentHabits.length === 0) {
+    percentage = 0;
+  } else {
+    setcounter();
+    percentage = Math.floor((counter / user.currentHabits.length) * 100);
+  }
 
   return (
     <Fragmento>

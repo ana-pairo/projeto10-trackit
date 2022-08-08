@@ -1,8 +1,10 @@
 import GlobalStyle from "./common/GlobalStyles";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+
 import UserContext from "../contexts/UserContext";
 import TokenContext from "../contexts/TokenContext";
-import { useState } from "react";
+import ReloadContext from "../contexts/ReloadContext";
 import Login from "./Login";
 import Register from "./Register";
 import TrackRecord from "./TrackRecord";
@@ -18,6 +20,7 @@ export default function App() {
     userHabits: "",
     currentHabits: "",
   });
+  const [totalReload, setTotalReload] = useState(false);
 
   return (
     <>
@@ -37,8 +40,12 @@ export default function App() {
             <Route
               path="/habitos"
               element={
-                <TokenContext.Provider value={{ token }}>
-                  <Habits />
+                <TokenContext.Provider value={{ token, totalReload }}>
+                  <ReloadContext.Provider
+                    value={{ totalReload, setTotalReload }}
+                  >
+                    <Habits />
+                  </ReloadContext.Provider>
                 </TokenContext.Provider>
               }
             />
@@ -54,7 +61,11 @@ export default function App() {
               path="/hoje"
               element={
                 <TokenContext.Provider value={{ token }}>
-                  <Today />
+                  <ReloadContext.Provider
+                    value={{ totalReload, setTotalReload }}
+                  >
+                    <Today />
+                  </ReloadContext.Provider>
                 </TokenContext.Provider>
               }
             />

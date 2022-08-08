@@ -4,38 +4,45 @@ import styled from "styled-components";
 
 import TokenContext from "../contexts/TokenContext";
 import UserContext from "../contexts/UserContext";
+import ReloadContext from "../contexts/ReloadContext";
 import Button from "./common/Button";
 import Container from "./common/Container";
 import HabitForm from "./HabitForm";
 import { Header } from "./Header";
 import Menu from "./Menu";
 import HabitsList from "./HabitsList";
-
-import { getHabit } from "../services/TrackIt";
+import { getCurrentHabit, getHabit } from "../services/TrackIt";
 
 export default function Habits() {
   const navigate = useNavigate();
   const { token } = useContext(TokenContext);
   const { user, setUser } = useContext(UserContext);
+  const { totalReload } = useContext(ReloadContext);
   const [openHabitForm, setOpenHabitForm] = useState(false);
-  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     if (!token) {
       navigate("/");
     } else {
       getHabit(token)
-        .then((res) => {
-          setUser({
-            ...user,
-            userHabits: res.data,
-          });
+        .then((res1) => {
+          getCurrentHabit({ token })
+            .then((res2) => {
+              setUser({
+                ...user,
+                userHabits: res1.data,
+                currentHabits: res2.data,
+              });
+            })
+            .catch((err2) => {
+              navigate("/");
+            });
         })
-        .catch((err) => {
+        .catch((err1) => {
           navigate("/");
         });
     }
-  }, [reload]);
+  }, [totalReload]);
 
   return (
     <>
@@ -52,12 +59,7 @@ export default function Habits() {
             +
           </Button>
         </Title>
-        <HabitForm
-          open={openHabitForm}
-          setOpenHabitForm={setOpenHabitForm}
-          setReload={setReload}
-          reload={reload}
-        />
+        <HabitForm open={openHabitForm} setOpenHabitForm={setOpenHabitForm} />
         {user.userHabits ? (
           user.userHabits.length === 0 ? (
             <Message>
@@ -65,7 +67,7 @@ export default function Habits() {
               para começar a trackear!
             </Message>
           ) : (
-            <HabitsList setReload={setReload} reload={reload} />
+            <HabitsList />
           )
         ) : (
           ""

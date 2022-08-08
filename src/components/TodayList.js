@@ -1,25 +1,60 @@
 import styled from "styled-components";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import TokenContext from "../contexts/TokenContext";
 import UserContext from "../contexts/UserContext";
+import { checkHabit, uncheckHabit } from "../services/TrackIt";
+import ReloadContext from "../contexts/ReloadContext";
 
-export default function TodayList() {
+export default function TodayList({ reloadHabits, setReloadHabits }) {
   const { token } = useContext(TokenContext);
   const { user } = useContext(UserContext);
-  console.log(user);
+  const { totalReload, setTotalReload } = useContext(ReloadContext);
+
+  function handleCheck(done, habitId) {
+    if (done) {
+      uncheckHabit({ token, habitId })
+        .then((res) => {
+          setTotalReload(!totalReload);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      checkHabit({ token, habitId })
+        .then((res) => {
+          setTotalReload(!totalReload);
+        })
+        .catch((err) => console.log(err));
+    }
+  }
 
   return (
     <TodayWrapper>
       {user.currentHabits.map((currentHabit, index) => (
         <Habit key={index}>
           <Title>{currentHabit.name}</Title>
-          <ion-icon name="checkbox"></ion-icon>
+          <ion-icon
+            name="checkbox"
+            style={{ color: currentHabit.done ? "#8FC549" : "#ebebeb" }}
+            onClick={() => handleCheck(currentHabit.done, currentHabit.id)}
+          ></ion-icon>
           <Sequence>
-            Sequência atual: <span> {currentHabit.currentSequence} dias</span>
+            Sequência atual:
+            <StyledNumber done={currentHabit.done}>
+              {currentHabit.currentSequence} dias
+            </StyledNumber>
           </Sequence>
           <Sequence>
-            Seu recorde: <span>{currentHabit.highestSequence} dias</span>
+            Seu recorde:
+            <StyledNumber
+              done={
+                currentHabit.done &&
+                currentHabit.currentSequence === currentHabit.highestSequence
+                  ? true
+                  : false
+              }
+            >
+              {currentHabit.highestSequence} dias
+            </StyledNumber>
           </Sequence>
         </Habit>
       ))}
@@ -49,20 +84,21 @@ const Habit = styled.div`
     top: 10px;
     width: 70px;
     height: 70px;
-    color: #ebebeb;
+    visibility: visible;
   }
 `;
 
 const Title = styled.div`
+  resize: vertical;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 25px;
   color: #666666;
-
   margin: 0 auto;
   width: 90%;
   margin-bottom: 7px;
+  padding-right: 70px;
 `;
 
 const Sequence = styled.div`
@@ -73,4 +109,9 @@ const Sequence = styled.div`
   width: 200px;
   margin-left: 5%;
   font-size: 12px;
+`;
+
+const StyledNumber = styled.div`
+  margin-left: 5px;
+  color: ${(props) => (props.done ? "#8FC549" : "#666666")};
 `;

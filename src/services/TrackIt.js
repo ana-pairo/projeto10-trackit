@@ -58,7 +58,7 @@ function checkHabit({ token, habitId }) {
       Authorization: `Bearer ${token}`,
     },
   };
-  const promise = axios.post(`${BASE_URL}/habits/${habitId}/check`, "", config);
+  const promise = axios.post(`${BASE_URL}/habits/${habitId}/check`, {}, config);
   return promise;
 }
 
@@ -70,7 +70,7 @@ function uncheckHabit({ token, habitId }) {
   };
   const promise = axios.post(
     `${BASE_URL}/habits/${habitId}/uncheck`,
-    "",
+    {},
     config
   );
   return promise;

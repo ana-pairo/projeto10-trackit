@@ -4,16 +4,13 @@ import styled from "styled-components";
 import Button from "./common/Button";
 import TokenContext from "../contexts/TokenContext";
 import { postHabit } from "../services/TrackIt";
+import ReloadContext from "../contexts/ReloadContext";
 
-export default function HabitForm({
-  open,
-  setOpenHabitForm,
-  setReload,
-  reload,
-}) {
+export default function HabitForm({ open, setOpenHabitForm }) {
   const [isDisable, setIsDisable] = useState(false);
   const [disableDays, setDisableDays] = useState(false);
   const { token } = useContext(TokenContext);
+  const { totalReload, setTotalReload } = useContext(ReloadContext);
   const days = ["D", "S", "T", "Q", "Q", "S", "S"];
   const [selectedDays, setSelectedDays] = useState([]);
   const [habitName, setHabitName] = useState("");
@@ -47,7 +44,7 @@ export default function HabitForm({
         setOpenHabitForm(false);
         setIsDisable(false);
         setDisableDays(false);
-        setReload(!reload);
+        setTotalReload(!totalReload);
       })
       .catch((err) => {
         setIsDisable(false);

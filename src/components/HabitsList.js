@@ -4,17 +4,19 @@ import { useContext } from "react";
 import TokenContext from "../contexts/TokenContext";
 import UserContext from "../contexts/UserContext";
 import { deleteHabit } from "../services/TrackIt";
+import ReloadContext from "../contexts/ReloadContext";
 
 export default function HabitsList({ setReload, reload }) {
   const { token } = useContext(TokenContext);
   const { user } = useContext(UserContext);
+  const { totalReload, setTotalReload } = useContext(ReloadContext);
   const weekDays = ["D", "S", "T", "Q", "Q", "S", "S"];
 
   function toDelete(habitId, habitName) {
     if (window.confirm(`Deseja deletar o hábito '${habitName}'?`)) {
       deleteHabit({ token, habitId })
         .then((res) => {
-          setReload(!reload);
+          setTotalReload(!totalReload);
         })
         .catch((err) => {});
     }
