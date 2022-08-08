@@ -57,7 +57,7 @@ export default function Today() {
 
         {user.currentHabits ? (
           user.currentHabits.length === 0 ? (
-            <Message color="#bababa">
+            <Message color="#666666" margin="22px">
               Você não tem hábito marcado para hoje!
             </Message>
           ) : (
@@ -110,4 +110,5 @@ const Message = styled.div`
   width: 100%;
   padding: 0 18px;
   justify-content: start;
+  margin-top: ${(props) => (props.margin ? props.margin : 0)};
 `;
