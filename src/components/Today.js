@@ -73,7 +73,7 @@ export default function Today() {
               ) : (
                 <Message color="#8FC549">
                   {Math.floor((contador / user.currentHabits.length) * 100)}%
-                  dos hábitos concluídos`
+                  dos hábitos concluídos
                 </Message>
               )}
 

@@ -159,25 +159,3 @@ const Buttons = styled.div`
   align-items: center;
   margin-top: 20px;
 `;
-
-/* 
-  button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0;
-    padding-bottom: 3px;
-    height: 30px;
-    width: 30px;
-    text-decoration: none;
-    background-color: #ffffff;
-    border: 1px solid #d5d5d5;
-    border-radius: 5px;
-    margin-right: 4px;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 25px;
-    color: rgb(205, 205, 205, 0.8);
-    outline: none;
-  } */
