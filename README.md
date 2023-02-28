@@ -1,6 +1,6 @@
 <h1 align="center">TrackIt</h1>
 
-TrackIt is a simple front-end web application that helps users track their habits.
+TrackIt is a simple front-end mobile web application that helps users track their habits.
 
 ## Features
 
@@ -41,7 +41,7 @@ This project was built using the following technologies:
 
 <br/>
 
-Try it out now at https://mywalletcontrol.vercel.app/
+Try it out now at projeto10-trackit-one-wine.vercel.app
 
 ## How to run locally
 
