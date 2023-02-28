@@ -7,7 +7,7 @@ TrackIt is a simple front-end mobile web application that helps users track thei
 - Sign Up
 - Login
 - List of all habits tracked to the current day of a user
-- A screen to edit and delete habits and add new ones
+- A screen to delete habits and add new ones
 - Check daily completed habits and follow up your progress
 
 ## Tech Stack
