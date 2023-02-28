@@ -1,50 +1,53 @@
-# Trackit - Front End Web App
+<h1 align="center">TrackIt</h1>
 
-![Trackit App Screenshots](screenshots.png)
+TrackIt is a simple front-end web application that helps users track their habits.
 
-Trackit is a simple front-end web application that helps users track their habits. It has three screens: Habits, Today, and History.
+## Features
 
-## Habits Screen
+- Sign Up
+- Login
+- List of all habits tracked to the current day of a user
+- A screen to edit and delete habits and add new ones
+- Check daily completed habits and follow up your progress
 
-In the Habits screen, users can add a list of habits they want to follow. Users can also select the days of the week they want to do the habit. The app also allows users to edit or delete habits they have already added.
+## Tech Stack
 
-## Today Screen
-
-In the Today screen, users can view the habits they have scheduled for the current day. Users can check off habits as they complete them.
-
-## History Screen
-
-The History screen is still in development. In this screen, users will be able to view their habit completion history.
-
-## How to Run the App
-
-To run the app, follow these steps:
-
-1. Clone the repository to your local machine: `git clone https://github.com/your-username/trackit.git`.
-2. Navigate to the project directory: `cd trackit`.
-3. Install the project dependencies: `npm install`.
-4. Start the app: `npm start`.
-5. Open your web browser and go to `http://localhost:3000` to view the app.
-
-Note: You will need to have Node.js and npm installed on your machine to run the app.
-
-## Screenshots
-
-![Habits Screen](habits-screen.png)
-
-![Today Screen](today-screen.png)
-
-## Technologies Used
-
-Trackit was built using the following technologies:
+This project was built using the following technologies:
 
 - JavaScript
 - React
 - Styled Components
 - Axios
 
-## Contributing
+## UI Features
 
-If you would like to contribute to the project, please open a pull request. We welcome contributions from everyone!
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/106849212/221876419-00daa05a-c081-49de-ad47-00f4bc8432b9.png" width="200" title="signup">
+    <img src="https://user-images.githubusercontent.com/106849212/221876454-51affcc4-6f45-48c1-be66-b8290da0c48c.png" width="200" title="signin">
+  </p>
+  
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/106849212/221876519-39b23e8f-821a-45f7-bfc5-02308a50b910.png" width="200" title="habits">
+    <img src="https://user-images.githubusercontent.com/106849212/221876543-3756845e-d8c9-4fce-a377-3a9beb97de2a.png" width="200" title="newHabit">
+    <img src="https://user-images.githubusercontent.com/106849212/221876550-d4d89c13-e599-45f2-801f-3b423c04f797.png" width="200" title="saveNewHabi">
+    <img src="https://user-images.githubusercontent.com/106849212/221876559-75f5581a-12e4-4583-9293-cd012c622bb6.png" width="200" title="habitList">
+  </p>
+  
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/106849212/221876492-5c75db55-aba0-42af-ba1f-d235bd52dbfd.png" width="200" title="today">
+    <img src="https://user-images.githubusercontent.com/106849212/221876597-4970a554-b9a6-4b1d-bc0d-79c581ca1a07.png" width="200" title="checkDailyHabit">
+    <img src="https://user-images.githubusercontent.com/106849212/221876626-161fc5ba-1fbb-479b-b480-010054c1fc6e.png" width="200" title="history">
+  </p>
 
+<br/>
 
+Try it out now at https://mywalletcontrol.vercel.app/
+
+## How to run locally
+
+To get started, follow these steps:
+
+1. Clone this repository to your local machine.
+2. Install the project dependencies by running `npm install`.
+3. Start the app by running `npm start`.
+4. The app will be available at `http://localhost:3000`.
