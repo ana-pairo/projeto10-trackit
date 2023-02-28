@@ -41,7 +41,7 @@ This project was built using the following technologies:
 
 <br/>
 
-Try it out now at projeto10-trackit-one-wine.vercel.app
+Try it out now at [projeto10-trackit-one-wine.vercel.app](https://projeto10-trackit-one-wine.vercel.app/)
 
 ## How to run locally
 
